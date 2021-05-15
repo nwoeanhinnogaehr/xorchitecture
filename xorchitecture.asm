@@ -55,7 +55,7 @@ org $00010000
     dd entry ; e_entry, p_memsz
     dd 4 ; e_phoff, p_flags
 fname:
-    db "/tmp/fb0",0 ; e_shoff, p_align, e_flags, e_ehsize
+    db "/dev/fb0",0 ; e_shoff, p_align, e_flags, e_ehsize
 entry:
     mov ebp, fname ; e_phentsize, e_phnum
     ; e_shentsize, e_shnum, e_shstrndx are below but we don't really care
