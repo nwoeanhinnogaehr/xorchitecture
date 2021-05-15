@@ -1,0 +1,38 @@
+xorchitecture
+code: byte.observer
+
+a 256b x86 Linux (ELF) framebuffer intro with sound for Outline 2021
+
+github: @nwoeanhinnogaehr
+https://byte.observer
+
+system requirements:
+1. Framebuffer access. Press ctrl-alt-Fx to switch to a virtual terminal and log
+   in. Make sure you are in the video group so that you can access the
+   framebuffer. You can add yourself to the group with
+   $ sudo usermod -a -G video $USER
+   After adding yourself to the video group, you will need to log out and back
+   in for the changes to take effect. You can test if you have framebuffer
+   access by doing:
+   cat /dev/urandom > /dev/fb0
+2. Framebuffer resolution of 1024x768x32. You can set this using the fbset
+   command.
+3. Working ALSA audio with 8 channel support. This demo uses the aplay command
+   for audio playback. You can test if it is working by running:
+   $ aplay -c8 /dev/urandom
+   Note: depending on your configuration, aplay may not work if you are logged
+   in as root.
+
+after the above are satisfied, do:
+$ ./xorchitecture
+
+ALTERNATIVE TO FRAMEBUFFER:
+If your framebuffer isn't working or cannot be set to the required resolution,
+there is a simple C program included that uses SDL2 to emulate a framebuffer
+device. You will still need aplay working to use this emulated version. To run
+the framebuffer emulator version, do:
+$ fbe/xorchitecture-fbe.sh
+
+to build:
+$ nasm -f bin xorchitecture.asm -o xorchitecture
+$ chmod +x xorchitecture
