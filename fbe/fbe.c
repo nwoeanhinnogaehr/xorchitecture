@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-uint32_t pixels[1024*768];
 int main(int argc, char ** argv) {
     int fd = open("/tmp/fb0", O_RDWR);
     uint32_t *pixels = mmap(0, 1024*768*4, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
